@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo Creating Partitions...
-parted /dev/sda
+parted /dev/sda << END
 mklabel gpt
 unit mib
 mkpart primary 1 3
