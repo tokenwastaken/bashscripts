@@ -29,7 +29,7 @@ mkswap /dev/sda3 swapon /dev/sda3
 chmod 1777 /var/tmp
 
 echo stage3..
-cd /mnt/gentoo << END
+cd /mnt/gentoo 
 wget http://distfiles.gentoo.org/releases/amd64/autobuilds/20190814T214502Z/stage3-amd64-20190814T214502Z.tar.xz
 
 tar xpvf stage3-*.tar.bz2 --xattrs-include='*.*' --numeric-owner
@@ -37,5 +37,4 @@ tar xpvf stage3-*.tar.bz2 --xattrs-include='*.*' --numeric-owner
 echo MAKEOPTS="-j2" >> etc/portage/make.conf 
 
 mirrorselect -i -o -c TURKEY -http >> /mnt/gentoo/etc/portage/make.conf
-;
-END
+
