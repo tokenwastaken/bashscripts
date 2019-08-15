@@ -1,0 +1,11 @@
+#!/bin/bash
+
+echo $?
+
+if [ "$?" = "0" ]; then # $? ile son çalışan komut ile ilgili bilgi aloyoruz. Değeri$
+        clear
+        echo Komut Başarılı!!! # $? değeri 0 ise komut doğru çalışıyor
+else
+        echo !!! Bir Hata Var !!! # $? değeri 0 değilse doğru çalışmıyordur.
+fi
+
