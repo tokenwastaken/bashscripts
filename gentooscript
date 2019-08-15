@@ -35,6 +35,6 @@ mv yourscript /mnt/gentoo
 
 tar xpvf stage3-*.tar.bz2 --xattrs-include='*.*' --numeric-owner
 
-echo MAKEOPTS="-j2" >> /mnt/gentoo/etc/portage/make.conf 
+echo MAKEOPTS="-j2" >> etc/portage/make.conf 
 
 mirrorselect -i -o -c TURKEY -http >> /mnt/gentoo/etc/portage/make.conf
