@@ -31,10 +31,17 @@ chmod 1777 /var/tmp
 echo stage3..
 cd /mnt/gentoo 
 wget http://distfiles.gentoo.org/releases/amd64/autobuilds/20190814T214502Z/stage3-amd64-20190814T214502Z.tar.xz
-
+cd /mnt//gentoo
 tar xpvf stage3-*.tar.xz --xattrs-include='*.*' --numeric-owner
-
+cd /mnt/gentoo
 echo MAKEOPTS="-j2" >> etc/portage/make.conf 
+cd /mnt/gentoo
+mirrorselect -i -o -c TURKEY -http >> /etc/portage/make.conf
+cd /mnt/gentoo
+cp --dereference /etc/resolv.conf /mnt/gentoo/etc/
 
-mirrorselect -i -o -c TURKEY -http >> /mnt/gentoo/etc/portage/make.conf
-
+mount --types proc /proc /mnt/gentoo/proc
+ mount --rbind /sys /mnt/gentoo/sys
+ mount --make-rslave /mnt/gentoo/sys
+ mount --rbind /dev /mnt/gentoo/dev
+ mount --make-rslave /mnt/gentoo/dev
