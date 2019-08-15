@@ -15,6 +15,8 @@ name 3 swap
 mkpart primary 643 -1
 name 4 rootfs
 quit
+;
+END
 
 echo creating filesystems...
 mkfs.ext2 /dev/sda2
