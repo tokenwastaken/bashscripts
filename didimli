@@ -2,10 +2,10 @@
 
 echo $?
 
-if [ "$?" = "0" ]; then # $? ile son çalışan komut ile ilgili bilgi aloyoruz. Değeri$
+if [ "$?" = "0" ]; then 
         clear
-        echo Komut Başarılı!!! # $? değeri 0 ise komut doğru çalışıyor
+        echo works
 else
-        echo !!! Bir Hata Var !!! # $? değeri 0 değilse doğru çalışmıyordur.
+        echo there is a problem with code.
 fi
 
