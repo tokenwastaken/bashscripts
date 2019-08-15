@@ -28,3 +28,5 @@ chmod 1777 /var/tmp
 
 echo stage3..
 cd /mnt/gentoo
+wget http://distfiles.gentoo.org/releases/amd64/autobuilds/20190814T214502Z/stage3-amd64-20190814T214502Z.tar.xz
+
