@@ -35,7 +35,7 @@ wget http://distfiles.gentoo.org/releases/amd64/autobuilds/20190814T214502Z/stag
 sleep 2s
 cd /mnt/gentoo
 tar xpvf stage3-*.tar.xz --xattrs-include='*.*' --numeric-owner
-sleep 2s
+sleep 5s
 cd /mnt/gentoo
 sleep 2s
 echo MAKEOPTS='"-j2"' >> etc/portage/make.conf 
