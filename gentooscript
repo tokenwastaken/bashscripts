@@ -32,17 +32,18 @@ echo stage3..
 cd /mnt/gentoo 
 sleep 1s
 wget http://distfiles.gentoo.org/releases/amd64/autobuilds/20190814T214502Z/stage3-amd64-20190814T214502Z.tar.xz
-sleep 1s
+sleep 2s
 cd /mnt/gentoo
 tar xpvf stage3-*.tar.xz --xattrs-include='*.*' --numeric-owner
-sleep 1s
+sleep 2s
 cd /mnt/gentoo
+sleep 2s
 echo MAKEOPTS='"-j2"' >> etc/portage/make.conf 
-sleep 1s
+sleep 2s
 cd /mnt/gentoo
 
 cp --dereference /etc/resolv.conf /mnt/gentoo/etc/
-
+sleep 2s
 mount --types proc /proc /mnt/gentoo/proc
 sleep 2s
 mount --rbind /sys /mnt/gentoo/sys
