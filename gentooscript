@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo Creating Partitions...
-parted /dev/sda 
+parted /dev/sda << END
 mklabel gpt
 unit mib
 mkpart primary 1 3
@@ -15,7 +15,8 @@ name 3 swap
 mkpart primary 643 -1
 name 4 rootfs
 quit
-
+;
+END
 
 echo creating filesystems...
 mkfs.ext2 /dev/sda2
@@ -52,7 +53,7 @@ mount --rbind /dev /mnt/gentoo/dev
 sleep 2s
 mount --make-rslave /mnt/gentoo/dev
 sleep 2s
-chroot /mnt/gentoo /bin/bash 
+chroot /mnt/gentoo /bin/bash << END
 sleep 2s
 source /etc/profile
 sleep 1s
@@ -71,6 +72,11 @@ env-update && source /etc/profile && export PS1="(chroot) ${PS1}"
 sleep 2s
 ls -l /usr/src/linux
  echo "sys-apps/util-linux static-libs" > /etc/portage/package.use/genkernel
+ sleep 1s
+ touch /mnt/gentoo/etc/portage/package.license
+ 
+ echo */*   * >> /mnt/gentoo/etc/portage/package.license
+
 emerge --autounmask y sys-kernel/genkernel
 sleep 2s
 echo /dev/sda2   /boot        ext2    defaults,noatime     0 2 >> /etc/fstab
@@ -82,4 +88,4 @@ sleep 1s
 genkernel all
 
 
-
+END
