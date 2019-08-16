@@ -30,25 +30,35 @@ chmod 1777 /var/tmp
 
 echo stage3..
 cd /mnt/gentoo 
+sleep 1s
 wget http://distfiles.gentoo.org/releases/amd64/autobuilds/20190814T214502Z/stage3-amd64-20190814T214502Z.tar.xz
+sleep 1s
 cd /mnt/gentoo
 tar xpvf stage3-*.tar.xz --xattrs-include='*.*' --numeric-owner
+sleep 1s
 cd /mnt/gentoo
 echo MAKEOPTS="-j2" >> etc/portage/make.conf 
+sleep 1s
 cd /mnt/gentoo
-mirrorselect -i -o -c TURKEY -http >> /etc/portage/make.conf
-cd /mnt/gentoo
+
 cp --dereference /etc/resolv.conf /mnt/gentoo/etc/
 
 mount --types proc /proc /mnt/gentoo/proc
+sleep 1s
 mount --rbind /sys /mnt/gentoo/sys
+sleep 1s
 mount --make-rslave /mnt/gentoo/sys
+sleep 1s
 mount --rbind /dev /mnt/gentoo/dev
+sleep 1s
 mount --make-rslave /mnt/gentoo/dev
  
 chroot /mnt/gentoo /bin/bash
+sleep 1s
 source /etc/profile
+sleep 1s
 export PS1="(chroot) ${PS1}"
-
+sleep 1s
 mount /dev/sda2 /boot
+sleep 1s
 emerge-webrsync
