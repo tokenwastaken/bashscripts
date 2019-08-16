@@ -74,7 +74,13 @@ ls -l /usr/src/linux
  echo "sys-apps/util-linux static-libs" > /etc/portage/package.use/genkernel
 emerge --autounmask y sys-kernel/genkernel
 sleep 2s
+echo /dev/sda2   /boot        ext2    defaults,noatime     0 2 >> /etc/fstab
+echo /dev/sda3   none         swap    sw                   0 0 >> /etc/fstab
+echo /dev/sda4   /            ext4    noatime              0 1 >> /etc/fstab
+echo /dev/cdrom  /mnt/cdrom   auto    noauto,user          0 0 >> /etc/fstab
 
+sleep 1s 
+genkernel all
 
 
 END
