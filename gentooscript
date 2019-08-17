@@ -98,5 +98,23 @@ echo '### Running genkernel...'
 sleep 1s 
 genkernel all
 
+echo '### Setting hostname...'
 
+echo hostname="my_hostname" > /etc/conf.d/hostname
+echo "asdasd" | passwd --stdin root
+echo '###Emerging system logger...'
+emerge app-admin/sysklogd
+rc-update add sysklogd default
+echo '###emerging DHCP...'
+emerge  net-misc/dhcpcd
+echo '###Installing GRUB2...'
+emerge --verbose sys-boot/grub:2
+grub-install /dev/sda
+grub-mkconfig -o /boot/grub/grub.cfg
+exit
 END
+cd
+umount -l /mnt/gentoo/dev{/shm,/pts,}
+umount -R /mnt/gentoo
+reboot
+
