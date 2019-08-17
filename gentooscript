@@ -81,7 +81,7 @@ echo '###Emerging kernel...'
 emerge sys-kernel/gentoo-sources
 ls -l /usr/src/linux
 echo '### emerging genkernel...'
-emerge  sys-kernel/genkernel
+emerge --autounmask-write y sys-kernel/genkernel
  echo "sys-apps/util-linux static-libs" >> /etc/portage/package.use/genkernel
  sleep 1s
  
