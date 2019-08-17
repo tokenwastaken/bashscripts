@@ -84,7 +84,7 @@ emerge autounmask-write y sys-kernel/genkernel
  echo "sys-apps/util-linux static-libs" > /etc/portage/package.use/genkernel
  sleep 1s
  
- echo */*   * >> /mnt/gentoo/etc/portage/package.license
+ echo */*   * >> /etc/portage/package.license
 
 sleep 2s
 echo /dev/sda2   /boot        ext2    defaults,noatime     0 2 >> /etc/fstab
