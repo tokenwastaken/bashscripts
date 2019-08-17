@@ -114,6 +114,7 @@ grub-mkconfig -o /boot/grub/grub.cfg
 exit
 END
 cd
+echo '###Unmounting root FS...'
 umount -l /mnt/gentoo/dev{/shm,/pts,}
 umount -R /mnt/gentoo
 reboot
