@@ -78,12 +78,14 @@ echo '###Updating environment...'
 env-update && source /etc/profile && export PS1="(chroot) ${PS1}"
 sleep 3s
 echo '###Emerging kernel...'
+emerge sys-kernel/gentoo-sources
 ls -l /usr/src/linux
+echo '### emerging genkernel...'
 emerge  sys-kernel/genkernel
- #echo "sys-apps/util-linux static-libs" > /etc/portage/package.use/genkernel
+ echo "sys-apps/util-linux static-libs" >> /etc/portage/package.use/genkernel
  sleep 1s
  
- #echo "*/*   *" >> /etc/portage/package.license
+ echo "*/*   *" >> /etc/portage/package.license
 
 sleep 2s
 echo /dev/sda2   /boot        ext2    defaults,noatime     0 2 >> /etc/fstab
