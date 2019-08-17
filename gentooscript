@@ -40,7 +40,7 @@ tar xpvf stage3-*.tar.xz --xattrs-include='*.*' --numeric-owner
 sleep 5s
 cd /mnt/gentoo
 sleep 2s
-echo MAKEOPTS='"-j2"' >> etc/portage/make.conf 
+echo MAKEOPTS='"-j4"' >> etc/portage/make.conf 
 sleep 2s
 
 cp --dereference /etc/resolv.conf /mnt/gentoo/etc/
