@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo Creating Partitions...
+echo '###Creating Partitions...'
 parted /dev/sda << END
 mklabel gpt
 unit mib
@@ -18,22 +18,23 @@ quit
 ;
 END
 
-echo creating filesystems...
+echo '###Creating filesystems...###'
 mkfs.ext2 /dev/sda2
 mkfs.ext4 /dev/sda4
 
-echo mounting partitions...
+echo '###Mounting partitions...'
 
 mount /dev/sda4 /mnt/gentoo
 mkswap /dev/sda3
 swapon /dev/sda3
 chmod 1777 /var/tmp
 
-echo stage3..
+echo '###Stage3...'
 cd /mnt/gentoo 
 sleep 1s
 wget http://distfiles.gentoo.org/releases/amd64/autobuilds/20190814T214502Z/stage3-amd64-20190814T214502Z.tar.xz
 sleep 2s
+echo '### Extracting Tarball...'
 cd /mnt/gentoo
 tar xpvf stage3-*.tar.xz --xattrs-include='*.*' --numeric-owner
 sleep 5s
@@ -41,10 +42,11 @@ cd /mnt/gentoo
 sleep 2s
 echo MAKEOPTS='"-j2"' >> etc/portage/make.conf 
 sleep 2s
-cd /mnt/gentoo
 
 cp --dereference /etc/resolv.conf /mnt/gentoo/etc/
 sleep 2s
+echo '### Mounting necessities for chrooting...'
+
 mount --types proc /proc /mnt/gentoo/proc
 sleep 2s
 mount --rbind /sys /mnt/gentoo/sys
@@ -55,6 +57,7 @@ mount --rbind /dev /mnt/gentoo/dev
 sleep 2s
 mount --make-rslave /mnt/gentoo/dev
 sleep 2s
+echo '### Chrooting into the new environment...'
 chroot /mnt/gentoo /bin/bash << END
 sleep 2s
 source /etc/profile
@@ -67,11 +70,14 @@ mount /dev/sda2 /boot
 sleep 2s
 emerge-webrsync
 eselect profile set 1
-sleep 2s
+sleep 3s
+echo '###Emerging new world...'
 emerge --verbose --update --deep --newuse @world
-sleep 2s
+sleep 3s
+echo '###Updating environment...'
 env-update && source /etc/profile && export PS1="(chroot) ${PS1}"
-sleep 2s
+sleep 3s
+echo '###Emerging kernel...'
 emerge sys-kernel/gentoo-sources
 ls -l /usr/src/linux
 emerge autounmask-write y sys-kernel/genkernel
