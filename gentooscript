@@ -101,7 +101,7 @@ genkernel all
 echo '### Setting hostname...'
 
 echo hostname="my_hostname" > /etc/conf.d/hostname
-echo "asdasd" | passwd --stdin root
+echo "asdfg123" | passwd --stdin root
 echo '###Emerging system logger...'
 emerge app-admin/sysklogd
 rc-update add sysklogd default
